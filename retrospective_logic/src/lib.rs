@@ -1,13 +1,9 @@
 use crate::config::LocalConfig;
 use std::fs;
-use std::path::Path;
 use atrium_api::agent::atp_agent::{AtpSession, CredentialSession};
 use atrium_api::agent::atp_agent::store::MemorySessionStore;
 use atrium_xrpc_client::reqwest::ReqwestClient;
 use atrium_api::agent::Agent;
-use std::sync::Arc;
-
-use atrium_api::com::atproto::server::create_session::Error as SessionError;
 use atrium_common::store::memory::MemoryStore;
 use retrospective_api::dev::baileytownsend::retrospective::day;
 use retrospective_api::record::KnownRecord;
@@ -80,7 +76,7 @@ pub async fn sync_retrospective(agent: Agent<CredentialSession<MemoryStore<(), A
 
     for day in days {
         let known_record: KnownRecord = day.1.into();
-        let collection = format!("{}.retrospective.day", collection);
+        let collection = format!("{}.day", collection);
 
         match agent.api.com.atproto.repo.put_record(atrium_api::com::atproto::repo::put_record::InputData{
             collection: collection.parse().unwrap(),
