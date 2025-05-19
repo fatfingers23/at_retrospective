@@ -45,7 +45,7 @@ pub async fn local_retrospective(config: LocalConfig) -> Result<(), Retrospectiv
             Ok(content) => {
                 match serde_json::from_str::<day::RecordData>(&content) {
                     Ok(record) => {
-                        let just_the_date = file.file_name().to_string_lossy().to_string();
+                        let just_the_date = file.file_name().to_string_lossy().to_string().replace(".json", "");
                         days.push((just_the_date, record));
                     },
                     Err(e) => return Err(RetrospectiveError::GeneralError(
@@ -78,6 +78,7 @@ pub async fn sync_retrospective(agent: Agent<CredentialSession<MemoryStore<(), A
         let known_record: KnownRecord = day.1.into();
         let collection = format!("{}.day", collection);
 
+        //TODO I think theres a bult update endpoint
         match agent.api.com.atproto.repo.put_record(atrium_api::com::atproto::repo::put_record::InputData{
             collection: collection.parse().unwrap(),
             record: known_record.into(),

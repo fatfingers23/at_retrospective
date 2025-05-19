@@ -2,10 +2,10 @@ extern crate dotenv;
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 use std::{fs};
-use chrono::{Local, NaiveDate};
+use chrono::{Local};
 use dotenv::dotenv;
 use retrospective_logic::config::LocalConfig;
-use retrospective_logic::{local_retrospective, RetrospectiveError};
+use retrospective_logic::{local_retrospective};
 use retrospective_api::dev::baileytownsend::retrospective::day;
 
 
@@ -48,7 +48,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Commands::NewDay(args) => {
             let path = args.local_repo.clone();
             let today = Local::now();
-            let filename = format!("{}.json", today.date().format("%Y-%m-%d"));
+            let filename = format!("{}.json", today.date_naive().format("%Y-%m-%d"));
             let empty_record =  day::RecordData {
                 countables: vec![day::CountableData{ count: 0, key: "place_holder".to_string() }.into()],
                 events: vec![day::EventData { description: "A place holder".to_string(), key: "place_holder".to_string() }.into()],
