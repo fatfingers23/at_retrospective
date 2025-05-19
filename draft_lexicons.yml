@@ -1,0 +1,16 @@
+draft:
+  dev.baileytownsend.retrospective.day:
+  dev.baileytownsend.retrospective.day#countable:
+    - key - what are we counting
+    - value - how many of those things are there
+  dev.baileytownsend.retrospective.day#event:
+    - key - what is the event
+    - value - what is the event about
+  dev.baileytownsend.retrospective.goal:
+  - name - what is the goal
+  - time - day, week, month, year. Open
+  - status - started, future, completed, gave up
+  - created - when was the goal created
+  - started - when did the goal start
+  - completed - when was the goal completed
+  

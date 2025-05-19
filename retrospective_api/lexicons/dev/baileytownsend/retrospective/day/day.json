@@ -1,0 +1,73 @@
+{
+    "lexicon": 1,
+    "id": "dev.baileytownsend.retrospective.day",
+    "defs": {
+        "main": {
+            "type": "record",
+            "description": "A retrospective of your day.",
+            "key": "tid",
+            "record": {
+                "type": "object",
+                "verifiedRef": [
+                    "events",
+                    "countables"
+                ],
+                "properties": {
+                    "events": {
+                        "description": "An array of retrospective events that happened in your day.",
+                        "type": "array",
+                        "items": {
+                            "type": "ref",
+                            "ref": "#event"
+                        }
+                    },
+                    "countables": {
+                        "description": "An array of retrospective countables that happened in your day.",
+                        "type": "array",
+                        "items": {
+                            "type": "ref",
+                            "ref": "#countable"
+                        }
+                    }
+                }
+            }
+        },
+        "countable": {
+            "type": "object",
+            "description": "Something that happened in your day that can be counted. Steps, water consumed, etc.",
+            "required": [
+                "key",
+                "count"
+            ],
+            "properties": {
+                "key": {
+                    "description": "a slugable key for the countable item using underscores instead of spaces. ounces_water, cookies_eaten, etc.",
+                    "type": "string"
+                },
+                "count": {
+                    "description": "The count for the event. This is the number of times the event happened.",
+                    "type": "integer",
+                    "default": 0
+                }
+            }
+        },
+        "event": {
+            "type": "object",
+            "description": "Something that happened in your day. Maybe you read a book, told a funny joke, or went on a fun outing. This is a record of that event.",
+            "required": [
+                "key",
+                "description"
+            ],
+            "properties": {
+                "key": {
+                    "description": "a slugable key for the event item using underscores instead of spaces. Like movies_watched, books_read, or restaurants_tried.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "What was the event? Watched a movie, what movie? Went to the beach?",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
