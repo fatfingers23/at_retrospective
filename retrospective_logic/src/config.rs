@@ -1,4 +1,6 @@
-struct LocalConfig {
+use std::path::PathBuf;
+
+pub struct LocalConfig {
     /// Your handle for your atproto account
     pub handle: String,
     /// Your atproto password

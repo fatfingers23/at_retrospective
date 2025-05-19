@@ -5,11 +5,12 @@ use atrium_api::types::TryFromUnknown;
 #[serde(rename_all = "camelCase")]
 pub struct RecordData {
     ///An array of retrospective countables that happened in your day.
-    #[serde(skip_serializing_if = "core::option::Option::is_none")]
-    pub countables: core::option::Option<Vec<Countable>>,
+    pub countables: Vec<Countable>,
     ///An array of retrospective events that happened in your day.
+    pub events: Vec<Event>,
+    ///A text summary of your day, 300 character limit so it can be used as a post as well
     #[serde(skip_serializing_if = "core::option::Option::is_none")]
-    pub events: core::option::Option<Vec<Event>>,
+    pub summary: core::option::Option<String>,
 }
 pub type Record = atrium_api::types::Object<RecordData>;
 impl From<atrium_api::types::Unknown> for RecordData {

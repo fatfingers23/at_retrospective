@@ -8,7 +8,7 @@
             "key": "nsid",
             "record": {
                 "type": "object",
-                "verifiedRef": [
+                "required": [
                     "events",
                     "countables"
                 ],
@@ -28,6 +28,11 @@
                             "type": "ref",
                             "ref": "#countable"
                         }
+                    },
+                    "summary": {
+                        "description": "A text summary of your day, 300 character limit so it can be used as a post as well",
+                        "type":"string",
+                        "maxLength": 300
                     }
                 }
             }

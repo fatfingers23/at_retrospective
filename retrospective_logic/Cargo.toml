@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+atrium-api.workspace = true
+atrium-common.workspace = true
+atrium-identity.workspace = true
+atrium-oauth.workspace = true
+atrium-xrpc.workspace = true
+atrium-xrpc-client.workspace = true
+retrospective_api = {path = "../retrospective_api"}
+serde_json.workspace = true
